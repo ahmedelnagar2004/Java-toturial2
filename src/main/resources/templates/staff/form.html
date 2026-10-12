@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${staff.id == null} ? 'Add Staff' : 'Edit Staff'"></title>
+</head>
+<body>
+<h1 th:text="${staff.id == null} ? 'Add Staff' : 'Edit Staff'"></h1>
+
+<form th:object="${staff}"
+      th:action="${staff.id == null} ? @{/staff} : @{/staff/update/{id}(id=${staff.id})}"
+      method="post">
+    <div>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required/>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required/>
+    </div>
+    <div>
+        <label>Position:</label>
+        <input type="text" th:field="*{position}" required/>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+<a th:href="@{/staff}">Back to list</a>
+</body>
+</html>
